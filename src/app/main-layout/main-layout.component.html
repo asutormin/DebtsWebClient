@@ -1,0 +1,147 @@
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">З А Д О Л Ж Е Н Н О С Т И</a>
+  <div class="container-fluid justify-content-end text-white">
+     <span>{{currentUser !== null ? currentUser.name : ''}}</span>
+  </div>
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" (click)="logout()">Выйти</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-sm-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="#" [routerLink]="['/common']"
+               [routerLinkActive]="['active']" routerLinkActiveOptions="{exact:true}">
+              <svg class="feather">
+                <use xlink:href="assets/feather-sprite.svg#home"/>
+              </svg>Общие<span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/dinners']"
+               [routerLinkActive]="['active']" routerLinkActiveOptions="{exact:true}">
+              <svg class="feather">
+                <use xlink:href="assets/feather-sprite.svg#coffee"/>
+              </svg>
+              Обеды
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/travels']"
+               [routerLinkActive]="['active']" routerLinkActiveOptions="{exact:true}">
+              <svg class="feather">
+                <use xlink:href="assets/feather-sprite.svg#compass"/>
+              </svg>
+              Поездки
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/tickets']"
+               [routerLinkActive]="['active']" routerLinkActiveOptions="{exact:true}">
+              <svg class="feather">
+                <use xlink:href="assets/feather-sprite.svg#film"/>
+              </svg>
+              Билеты
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/events']"
+               [routerLinkActive]="['active']" routerLinkActiveOptions="{exact:true}">
+              <svg class="feather">
+                <use xlink:href="assets/feather-sprite.svg#star"/>
+              </svg>
+              Мероприятия
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/fitness']"
+               [routerLinkActive]="['active']" routerLinkActiveOptions="{exact:true}">
+              <svg class="feather">
+                <use xlink:href="assets/feather-sprite.svg#activity"/>
+              </svg>Фитнес
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/loans']"
+               [routerLinkActive]="['active']" routerLinkActiveOptions="{exact:true}">
+              <svg class="feather">
+                <use xlink:href="assets/feather-sprite.svg#dollar-sign"/>
+              </svg>
+              Кредиты
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/acts']"
+               [routerLinkActive]="['active']" routerLinkActiveOptions="{exact:true}">
+              <svg class="feather">
+                <use xlink:href="assets/feather-sprite.svg#file-minus"/>
+              </svg>Акты удержаний
+            </a>
+          </li>
+          <!--
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/administration']"
+               [routerLinkActive]="['active']" routerLinkActiveOptions="{exact:true}">
+              <svg class="feather">
+                <use xlink:href="assets/feather-sprite.svg#settings"/>
+              </svg>
+              Администрирование
+            </a>
+          </li>
+          -->
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+      <div class="d-flex flex-nowrap">
+        <div class="d-flex flex-nowrap w-25 mb-2">
+          <select class="custom-select mr-2"
+                  style="min-width: 80px;"
+                  type="number"
+                  [(ngModel)]="selectedYear"
+                  (ngModelChange)="onParameterChange()">
+            <option value="0">Год</option>
+            <option *ngFor="let year of years" [ngValue]="year">{{year}}</option>
+          </select>
+          <select class="custom-select mr-2"
+                  style="min-width: 110px;"
+                  type="number"
+                  [(ngModel)]="selectedMonth"
+                  (ngModelChange)="onParameterChange()">
+            <option *ngFor="let month of months" [ngValue]="month.id">{{month.name}}</option>
+          </select>
+        </div>
+        <div class="d-flex flex-nowrap container-fluid p-0 mb-3">
+          <ng-multiselect-dropdown
+            class="w-25 p-0 mr-2"
+            style="min-width: 170px;"
+            [placeholder]="'Бизнес юниты'"
+            [data]="businessUnits"
+            [(ngModel)]="selectedBusinessUnits"
+            (ngModelChange)="onParameterChange()"
+            [settings]="dropdownSettings"
+          >
+          </ng-multiselect-dropdown>
+          <ng-multiselect-dropdown
+            class="container-fluid p-0"
+            style="min-width: 480px;"
+            [placeholder]="'Подразделения'"
+            [data]="departments"
+            [(ngModel)]="selectedDepartments"
+            (ngModelChange)="onParameterChange()"
+            [settings]="dropdownSettings"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+      </div>
+      <router-outlet (activate)="onActivate($event)"></router-outlet>
+    </main>
+  </div>
+</div>

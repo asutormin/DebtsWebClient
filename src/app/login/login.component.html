@@ -1,0 +1,39 @@
+<div class="d-flex align-items-center min-vh-100">
+  <div class="container text-center">
+    <form class="form-signin align-items-center text-center justify-content-center" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <img class="mb-3" src="/assets/img/fav_big.png" alt="" width="100" height="100">
+      <h1 class="h3 mb-4 font-weight-normal">ЗАДОЛЖЕННОСТИ</h1>
+      <div class="form-group">
+        <label for="login" class="sr-only">Логин</label>
+        <input type="login" id="login" class="form-control" formControlName="login" placeholder="Логин" autofocus=""
+               [ngClass]="{ 'is-invalid': submitted && f.login.errors }">
+        <div *ngIf="submitted && f.login.errors" class="invalid-feedback">
+          <div *ngIf="f.login.errors.required">Задайте логин</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password" class="sr-only">Пароль</label>
+        <input type="password" id="password" class="form-control" formControlName="password" placeholder="Пароль"
+               [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Задайте пароль</div>
+        </div>
+      </div>
+      <!--
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Запомнить
+        </label>
+      </div>
+      -->
+      <button [disabled]="loading" class="btn btn-secondary btn-block" type="submit">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        Войти
+      </button>
+      <p class="mt-5 mb-3 text-muted">БЕТА ПРЕСС © 2020</p>
+      <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+    </form>
+  </div>
+</div>
+
+

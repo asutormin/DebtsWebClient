@@ -1,0 +1,45 @@
+<h4>Общие</h4>
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm text-right">
+    <thead>
+    <tr>
+      <th class="text-left">Сотрудник</th>
+      <th>Обеды</th>
+      <th>Поездки</th>
+      <th>Билеты</th>
+      <th>Мероприятия</th>
+      <th>Фитнес</th>
+      <th>Кредиты</th>
+      <th>Акты удержаний</th>
+      <th>Итого</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let common of commons">
+        <td class="text-left">{{common.debtorName}}</td>
+        <td>{{common.dinners}}</td>
+        <td>{{common.travels}}</td>
+        <td>{{common.tickets}}</td>
+        <td>{{common.events}}</td>
+        <td>{{common.fitness}}</td>
+        <td>{{common.loans}}</td>
+        <td>{{common.acts}}</td>
+        <td>{{common.total}}</td>
+      </tr>
+    </tbody>
+    <tfoot class="font-weight-bold">
+      <tr>
+        <td class="text-left">Итого:</td>
+        <td>{{getTotalDinners()}}</td>
+        <td>{{getTotalTravels()}}</td>
+        <td>{{getTotalTickets()}}</td>
+        <td>{{getTotalEvents()}}</td>
+        <td>{{getTotalFitness()}}</td>
+        <td>{{getTotalLoans()}}</td>
+        <td>{{getTotalActs()}}</td>
+        <td>{{getTotalTotal()}}</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

@@ -1,0 +1,70 @@
+<table class="table table-striped table-sm text-right">
+  <thead>
+  <tr>
+    <th class="text-left" width="75">#</th>
+    <th class="text-left">Сотрудник</th>
+    <th>
+      <span class="pr-2">Стоимость</span>
+    </th>
+    <th>
+      <span class="pr-2">Количество</span>
+    </th>
+    <th>Сумма</th>
+    <th class="text-left">
+      <span class="pl-2">Примечание</span>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let debt of debts; let i = index">
+      <td class="text-left">{{debt.id}}</td>
+      <td class="text-left">{{debt.debtorName}}</td>
+      <td>
+        <input id="{{ 'input-cost-' + i }}"
+               class="text-right border-0 bg-transparent pr-2"
+               (keydown)="onKeyDown($event, 'input-cost-')"
+               (keydown.escape)="onKeyEscape($event)"
+               (keydown.Enter)="onKeyEnter($event, 'input-cost-', i, debt)"
+               (keydown.arrowUp)="onKeyArrowUp($event, 'input-cost-', i)"
+               (keydown.arrowDown)="onKeyUpArrowDown($event, 'input-cost-', i)"
+               (keydown.arrowLeft)="onKeyArrowLeft($event, 'input-cost-', i)"
+               (keydown.arrowRight)="onKeyArrowRight($event, 'input-cost-', i)"
+               placeholder="{{debt.cost}}">
+      </td>
+      <td>
+        <input id="{{ 'input-count-' + i }}"
+               class="text-right border-0 bg-transparent pr-2"
+               (keydown)="onKeyDown($event, 'input-count-')"
+               (keydown.escape)="onKeyEscape($event)"
+               (keydown.Enter)="onKeyEnter($event, 'input-count-', i, debt)"
+               (keydown.arrowUp)="onKeyArrowUp($event, 'input-count-', i)"
+               (keydown.arrowDown)="onKeyUpArrowDown($event, 'input-count-', i)"
+               (keydown.arrowLeft)="onKeyArrowLeft($event, 'input-count-', i)"
+               (keydown.arrowRight)="onKeyArrowRight($event, 'input-count-', i)"
+               placeholder="{{debt.count}}"/>
+      </td>
+      <td>{{debt.cost * debt.count}}</td>
+      <td class="text-left">
+        <input id="{{ 'input-description-' + i}}"
+               class="text-left border-0 bg-transparent pl-2"
+               (keydown)="onKeyDown($event, 'input-description-')"
+               (keydown.escape)="onKeyEscape($event)"
+               (keydown.Enter)="onKeyEnter($event, 'input-description-', i, debt)"
+               (keydown.arrowUp)="onKeyArrowUp($event, 'input-description-', i)"
+               (keydown.arrowDown)="onKeyUpArrowDown($event, 'input-description-', i)"
+               (keydown.arrowLeft)="onKeyArrowLeft($event, 'input-description-', i)"
+               (keydown.arrowRight)="onKeyArrowRight($event, 'input-description-', i)"
+               placeholder="{{debt.description}}"/>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr class="font-weight-bold">
+      <td rowspan="4" class="text-left">Итого:</td>
+      <td></td>
+      <td></td>
+      <td>{{getTotalCount()}}</td>
+      <td>{{getTotalSum()}}</td>
+    </tr>
+  </tfoot>
+</table>
